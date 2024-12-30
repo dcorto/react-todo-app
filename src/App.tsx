@@ -1,35 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, {useState} from 'react'
+import {Todos} from './components/Todos'
 
-function App() {
-  const [count, setCount] = useState(0)
+const mockTodos = [
+    { id: '1', title: 'Aprender React', completed: false },
+    { id: '2', title: 'Aprender TypeScript', completed: true },
+    { id: '3', title: 'Aprender Vite', completed: false },
+]
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+const App: React.FC = () => {
+    const [todos, setTodos] = useState(mockTodos)
+
+    const handleRemoveTodo = (id: string) => {
+        const newTodos = todos.filter((todo) => todo.id !== id)
+        setTodos(newTodos)
+    }
+
+    const handleCompletedTodo = (id: string, completed: boolean) => {
+        const newTodos = todos.map((todo) => {
+            if (todo.id === id) {
+                return { ...todo, completed }
+            }
+            return todo
+        })
+        setTodos(newTodos)
+    }
+
+    return (
+        <>
+            <div className={'todoapp'}>
+                <Todos
+                    onRemoveTodo={handleRemoveTodo}
+                    onToggleCompletedTodo={handleCompletedTodo}
+                    todos={todos} />
+            </div>
+        </>
+    )
 }
 
 export default App
