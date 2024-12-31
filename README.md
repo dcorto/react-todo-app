@@ -17,8 +17,8 @@ Basado en el curso de [Crear un TodoMVC con TypeScript](https://github.com/midud
 - [X] Añadir forma de borrar todos los TODOs completados
 - [X] Crear Header con input (Header)
 - [X] Crear un TODO (Header)
-- [ ] Poder editar el texto de un TODO (Doble click)
-- [ ] Añadir animaciones con AutoAnimate
+- [X] Poder editar el texto de un TODO (Doble click)
+- [X] Añadir animaciones con AutoAnimate
 - [ ] Pasar a Reducer
 - [ ] Sincronizar con el backend
 

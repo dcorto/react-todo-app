@@ -1,15 +1,55 @@
-import React from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import type { Todo as TodoType } from '../types'
 
 interface Props extends TodoType {
-    onRemoveTodo: (id: string) => void
-    onToggleCompletedTodo: (id: string, completed: boolean) => void
+    setCompleted: (id: string, completed: boolean) => void
+    setTitle: (params: { id: string, title: string }) => void
+    removeTodo: (id: string) => void
+    isEditing: string
+    setIsEditing: (completed: string) => void
 }
 
-export const Todo: React.FC<Props> = ({ id, title, completed, onRemoveTodo, onToggleCompletedTodo }) => {
+export const Todo: React.FC<Props> = ({
+  id,
+  title,
+  completed,
+  setCompleted,
+  setTitle,
+  removeTodo,
+  isEditing,
+  setIsEditing
+}) => {
+  const [editedTitle, setEditedTitle] = useState(title)
+  const inputEditTitle = useRef<HTMLInputElement>(null)
+
+
+    /* TODO: remove
     const handleToggleCompleted = (event: React.ChangeEvent<HTMLInputElement>) => {
-        onToggleCompletedTodo(id, event.target.checked)
+        setCompleted(id, event.target.checked)
     }
+    */
+
+    const handleKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
+        if (e.key === 'Enter') {
+            setEditedTitle(editedTitle.trim())
+
+            if (editedTitle !== title) {
+                setTitle({ id, title: editedTitle })
+            }
+
+            if (editedTitle === '') removeTodo(id)
+            setIsEditing('')
+        }
+
+        if (e.key === 'Escape') {
+            setEditedTitle(title)
+            setIsEditing('')
+        }
+    }
+
+    useEffect(() => {
+        inputEditTitle.current?.focus()
+    }, [isEditing])
 
     return (
         <>
@@ -18,12 +58,27 @@ export const Todo: React.FC<Props> = ({ id, title, completed, onRemoveTodo, onTo
                     className='toggle'
                     checked={completed}
                     type='checkbox'
-                    //onChange={() => {}}
-                    onChange={handleToggleCompleted}
+                    onChange={(e) => {
+                        setCompleted(id, e.target.checked)
+                    }}
                 />
                 <label>{title}</label>
-                <button className='destroy' onClick={() => {onRemoveTodo(id)}}></button>
+                <button className='destroy' onClick={() => {
+                    removeTodo(id)
+                }}></button>
             </div>
+            <input
+                className='edit'
+                value={editedTitle}
+                onChange={(e) => {
+                    setEditedTitle(e.target.value)
+                }}
+                onKeyDown={handleKeyDown}
+                onBlur={() => {
+                    setIsEditing('')
+                }}
+                ref={inputEditTitle}
+            />
         </>
     )
 }

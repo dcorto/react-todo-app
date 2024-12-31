@@ -81,6 +81,22 @@ const App: React.FC = () => {
         setTodos([...todos, newTodo])
     }
 
+    const handleUpdateTitle = ({ id, title }: { id: string, title: string }): void => {
+        console.log(id + title + " handleUpdateTitle") //TODO: remove
+        const newTodos = todos.map((todo) => {
+            if (todo.id === id) {
+                return {
+                    ...todo,
+                    title
+                }
+            }
+
+            return todo
+        })
+
+        setTodos(newTodos)
+    }
+
     const completedCount = todos.filter((todo) => todo.completed).length
     const activeCount = todos.length - completedCount
 
@@ -89,8 +105,9 @@ const App: React.FC = () => {
             <div className={'todoapp'}>
                 <Header saveTodo={handleSave} />
                 <Todos
-                    onRemoveTodo={handleRemoveTodo}
-                    onToggleCompletedTodo={handleCompletedTodo}
+                    setCompleted={handleCompletedTodo}
+                    setTitle={handleUpdateTitle}
+                    removeTodo={handleRemoveTodo}
                     todos={filteredTodos} />
                 <Footer
                     handleFilterChange={handleFilterChange}
