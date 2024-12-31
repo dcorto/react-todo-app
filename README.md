@@ -12,7 +12,7 @@ Basado en el curso de [Crear un TodoMVC con TypeScript](https://github.com/midud
 - [X] Listar todos los TODOs
 - [X] Poder borrar un TODO
 - [X] Marcar TODO como completado
-- [ ] Añadir forma de filtrar TODOs (Footer)
+- [X] Añadir forma de filtrar TODOs (Footer)
 - [ ] Mostrar número de TODOs pendientes (Footer)
 - [ ] Añadir forma de borrar todos los TODOs completados
 - [ ] Crear Header con input (Header)
