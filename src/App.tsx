@@ -6,7 +6,7 @@ import { type FilterValue } from './types'
 
 const mockTodos = [
     { id: '1', title: 'Aprender React', completed: false },
-    { id: '2', title: 'Aprender TypeScript', completed: true },
+    { id: '2', title: 'Aprender TypeScript', completed: false },
     { id: '3', title: 'Aprender Vite', completed: false },
 ]
 
@@ -65,6 +65,14 @@ const App: React.FC = () => {
         window.history.pushState({}, '', `${window.location.pathname}?${params.toString()}`)
     }
 
+    const handleClearCompleted = (): void => {
+        const newTodos = todos.filter((todo) => !todo.completed)
+        setTodos(newTodos)
+    }
+
+    const completedCount = todos.filter((todo) => todo.completed).length
+    const activeCount = todos.length - completedCount
+
     return (
         <>
             <div className={'todoapp'}>
@@ -74,10 +82,10 @@ const App: React.FC = () => {
                     todos={filteredTodos} />
                 <Footer
                     handleFilterChange={handleFilterChange}
-                    completedCount={0}
-                    activeCount={0}
+                    completedCount={completedCount}
+                    activeCount={activeCount}
                     filterSelected={filterSelected}
-                    onClearCompleted={ () => {} }
+                    onClearCompleted={handleClearCompleted}
                 />
             </div>
         </>

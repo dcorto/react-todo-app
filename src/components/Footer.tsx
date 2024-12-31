@@ -23,12 +23,19 @@ export const Footer: React.FC<Props> = ({ activeCount, completedCount, onClearCo
                 <span className="todo-count">
                     <strong>{activeCount}</strong> {activeTodoWord} pendiente{!singleActiveCount && 's'}
                 </span>
-
                 <Filters filterSelected={filterSelected} handleFilterChange={handleFilterChange} />
+
+                {
+                    completedCount > 0 && (
+                        <button
+                            className="clear-completed"
+                            onClick={onClearCompleted}>
+                            Borrar completados
+                        </button>
+                    )
+                }
 
             </footer>
         </>
     )
 }
-
-//<Filters filterSelected={filterSelected} handleFilterChange={handleFilterChange} />

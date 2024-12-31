@@ -13,8 +13,8 @@ Basado en el curso de [Crear un TodoMVC con TypeScript](https://github.com/midud
 - [X] Poder borrar un TODO
 - [X] Marcar TODO como completado
 - [X] Añadir forma de filtrar TODOs (Footer)
-- [ ] Mostrar número de TODOs pendientes (Footer)
-- [ ] Añadir forma de borrar todos los TODOs completados
+- [X] Mostrar número de TODOs pendientes (Footer)
+- [X] Añadir forma de borrar todos los TODOs completados
 - [ ] Crear Header con input (Header)
 - [ ] Crear un TODO (Header)
 - [ ] Poder editar el texto de un TODO (Doble click)
@@ -23,9 +23,13 @@ Basado en el curso de [Crear un TodoMVC con TypeScript](https://github.com/midud
 - [ ] Sincronizar con el backend
 
 ## Recursos
-- [Crear un TodoMVC con TypeScript](https://github.com/midudev/aprendiendo-react/tree/master/projects/08-todo-app-typescript)
+- [Repositorio: Crear un TodoMVC con TypeScript](https://github.com/midudev/aprendiendo-react/tree/master/projects/08-todo-app-typescript)
 
 - [Video: Tutorial práctico: React y TypeScript paso a paso, crea tu primera aplicación](https://www.youtube.com/watch?v=4lAYfsq-2TE) 
+
+- [Video: CURSO REACT 2024 - Aprende desde cero](https://youtu.be/7iobxzd_2wY?si=qhDv_VPLcCIV2gn0)
+
+- [Video: Tutorial de React para principiantes](https://www.youtube.com/watch?v=SqcY0GlETP)
 
 
 
