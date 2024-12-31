@@ -1,13 +1,14 @@
 import React, {useState} from 'react'
 import {Todos} from './components/Todos'
 import {Footer} from './components/Footer'
+import {Header} from './components/Header'
 import { TODO_FILTERS } from './consts'
 import { type FilterValue } from './types'
 
 const mockTodos = [
-    { id: '1', title: 'Aprender React', completed: false },
-    { id: '2', title: 'Aprender TypeScript', completed: false },
-    { id: '3', title: 'Aprender Vite', completed: false },
+    { id: crypto.randomUUID(), title: 'Aprender React', completed: false },
+    { id: crypto.randomUUID(), title: 'Aprender TypeScript', completed: false },
+    { id: crypto.randomUUID(), title: 'Aprender Vite', completed: false },
 ]
 
 const App: React.FC = () => {
@@ -70,12 +71,23 @@ const App: React.FC = () => {
         setTodos(newTodos)
     }
 
+    const handleSave = (title: string): void => {
+        const newTodo = {
+            id: crypto.randomUUID(),
+            title,
+            completed: false
+        }
+
+        setTodos([...todos, newTodo])
+    }
+
     const completedCount = todos.filter((todo) => todo.completed).length
     const activeCount = todos.length - completedCount
 
     return (
         <>
             <div className={'todoapp'}>
+                <Header saveTodo={handleSave} />
                 <Todos
                     onRemoveTodo={handleRemoveTodo}
                     onToggleCompletedTodo={handleCompletedTodo}
