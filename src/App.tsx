@@ -1,9 +1,11 @@
 import React, {useState} from 'react'
 import {Todos} from './components/Todos'
-import {Footer} from './components/Footer'
 import {Header} from './components/Header'
+import {InfoFooter} from "./components/InfoFooter.tsx";
+import {Footer} from "./components/Footer.tsx";
 import { TODO_FILTERS } from './consts'
 import { type FilterValue } from './types'
+
 
 const mockTodos = [
     { id: crypto.randomUUID(), title: 'Aprender React', completed: false },
@@ -103,12 +105,12 @@ const App: React.FC = () => {
     return (
         <>
             <div className={'todoapp'}>
-                <Header saveTodo={handleSave} />
+                <Header saveTodo={handleSave}/>
                 <Todos
                     setCompleted={handleCompletedTodo}
                     setTitle={handleUpdateTitle}
                     removeTodo={handleRemoveTodo}
-                    todos={filteredTodos} />
+                    todos={filteredTodos}/>
                 <Footer
                     handleFilterChange={handleFilterChange}
                     completedCount={completedCount}
@@ -117,6 +119,7 @@ const App: React.FC = () => {
                     onClearCompleted={handleClearCompleted}
                 />
             </div>
+            <InfoFooter />
         </>
     )
 }
